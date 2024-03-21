@@ -1,0 +1,22 @@
+UCLA CS35L WINTER 24
+TAE HWAN KIM
+506043010
+
+To create the Chorus-Lapilli app, I began with the tic-tac-toe game, excluding the history feature.
+
+Firstly, I declared a useState variable called [turnCount, setTurnCount] to track the initial pieces filled, with 3 pieces for X and 3 pieces for Y. Additionally, I declared another variable named chorusStarted, which becomes true when the turn count reaches 6, and false otherwise.
+
+Next, I extracted the tictactoe function from the handleClick function in the Board component, and included a single call to it within handleClick if chorusStarted is false. In the case where chorusStarted is true, I created another function named chorusLapilli, with a single call under this condition.
+
+Within the chorusLapilli function, I wanted to validate if a winner had been determined. In doing so, I introduced another useState variable [isTimeToMove, setTimeToMove] to check whether the player is selecting or moving a piece. When isTimeToMove is true, the player can click to move a piece, while it's false, the player selects a piece.
+
+For the selectSquare function, I restricted X player to only choosing X and also O player to choosing O when selecting a square.
+
+In the moveSquare function, I implemented validations to ensure the selected square is empty and acceptable to move (adjacent). For this validation, I introduced the acceptableSquaresToMove function, which takes the index of the selected square and returns a list of valid adjacent squares indexes.
+
+If the player chooses to move a piece, the selectedSquare value is replaced with the movingSquare. However, if the player attempts to move a piece and occupies the center square, it checks whether a winning move can be made from this position. If so, it allows the move and flips the turn and isTimeToMove; otherwise, it returns an error message, retaining the turn but prompting the player to select another square.
+
+To handle error messages, I introduced another useState variable [error, setError] and rendered it above the status. Additionally, I reset the error message when the turn is flipped. For this purpose, I created the isCenterOccupied function to check if a player currently occupies the center square.
+
+Lastly, for the status display, I added some code to indicate when the Chorus game has started and inform players whose turn it is and what actions they should take select or move.
+ 

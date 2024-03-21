@@ -1,0 +1,57 @@
+UCLA CS35L WINTER 24
+TAE HWAN KIM
+506043010
+
+Project Setup and Initial Configuration:
+I used "npx create-react-app tic-tac-toe" to start the project.
+
+Project Structure Adjustments:
+I cleared the unnecessary contents except App.js, index.js, and styles.css.
+ 
+Navigate to Project Folder and Open Project:
+I changed the directory to the project folder using cd tic-tac-toe, then launched VS Code with the code command.
+
+Testing the Project:
+npm start
+In a web browser, navigate to localhost:3000
+
+Building the Tic-Tac-Toe Components:
+I created a Square component that accepts a 'value' prop passed from the Board component. This component renders a button with the given value. Additionally, I created a Board component, consisting of 3 Square components for each row, totaling 9 Square components. Currently, I've passed arbitrary numbers to the Square component.
+What happend: The app features a board containing 9 squares, each displaying arbitrary numbers.
+
+
+I added a handleClick function with a console.log inside the Square component, and attached an onClick event to the button props.
+What happend: I can see the log message whenever I click any button.
+
+
+I imported useState into the JS file and added a useState variable. Inside the handleClick function, I included the setValue function to set the value 'X' upon click.
+I removed the arbitrary number passing of square components in the Board. Additionally, I added a useState variable '[squares, setSquares]' with a default value of 'Array(9).fill(null)' in the Board component. Furthermore, I added the 'onSquareClick' prop in the Square component and passed it as a prop of a button. I implemented handleClick to take an index and update the element of 'squares'. Finally, I passed each index of squares and handleClick function for each Square component in the Board.
+What happend: Whenever I clicked on an empty square, it rendered 'X'.
+
+
+I added the 'xIsNext' useState variable inside the Board component. I also implemented code so that the value is updated to 'X' or 'O' upon click in the handleClick function. Additionally, I added validation inside handleClick to check if the square is already occupied.
+What happend: Whenever I click on an empty square, it renders 'X', and then 'O'. Additionally, it doesn't change any value if I click on an occupied square.
+
+
+I implemented a calculateWinner function to determine the winner. This function takes a squares list and compares it to the corresponding lines. If there is a match, the function returns true; otherwise, it returns null.
+I added the calculateWinner function inside the handleClick validation. When a square is clicked, it checks if the square is occupied or if a winner has been determined.
+I then introduced a winner variable to store the result of calculateWinner(squares), and implemented a status variable to display the winner if the game is over or ongoing.
+What happend: The status will be rendered to display whose turn it is and the winner, if one is determined.
+
+
+I added the Game component as a default function and placed the Board component inside it, along with a history section. In the Game component, I moved [xIsNext, setXIsNext] from the Board component to the Game component to ensure control over the Board's data.
+I introduced a useState variable [history, setHistory] with the default value of [Array(9).fill(null)]. Additionally, I added a 'currentSquares' variable, which represents an element of the history array. I passed xIsNext, currentSquares, and the handlePlay function variables as props to the component.
+
+
+Inside the handleClick function, I replaced setSquares and setXIsNext with the onPlay function call.
+In the handlePlay function, I included setHistory to update the history and setXIsNext to ensure that the Board component receives the handlePlay function.
+Within the Game component, I added the 'moves' variable, which renders a description based on the move using map. It displays the description and a button to go to the previous move.
+What happend: Now, the app generates a 'go to move' button for each move when I click on a square. However, the 'go to move' button does not change the board because the 'jumpto' function is empty.
+
+
+I added the [currentMove, setCurrentMove] variable with a default value of 0 inside the Game component. Additionally, I included the setCurrentMove and setXIsNext calls in the ‘jumpto’ function so that the move is changed and the turn is also flipped when the 'go to' button is triggered.
+I introduced the nextHistory variable and included the setHistory and setCurrentMove function calls in the handlePlay function to maintain the old history. Each time a move is made, it updates currentMove to the latest history entry. The currentSquare variable is declared as the history at the currentMove index. Finally, I replaced the xIsNext useState with a regular variable.
+
+
+What happend: Now, the app is completed. The Tic-Tac-Toe game works properly, and each move generates a 'go to previous moves' button. Additionally, the status indicates whose turn it is and displays the winner if one is determined.
+
